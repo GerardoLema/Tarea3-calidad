@@ -42,7 +42,7 @@ public class ClienteServiceTestUnitaria {
     }
  @Test
     public void testFinOneExistente(){
-     //when(clienteRepository.findAll(1)).thenReturn(Optional.ofNullable(cliente));
+     when(clienteRepository.findAll(1)).thenReturn(Optional.ofNullable(cliente));
    Cliente cliente=clienteService.findOne(1);
      assertNotNull(cliente);
      assertEquals("Juan", cliente.getNombre());
@@ -73,11 +73,11 @@ public class ClienteServiceTestUnitaria {
         clienteActualizado.setTelefono("098745612");
         clienteActualizado.setCorreo("gbhf@correo.com");
         when(clienteRepository.findById(1)).thenReturn(Optional.ofNullable(cliente));
-        //when(clienteRepository.save(any())).thenReturn(clienteActualizado));
+        when(clienteRepository.save(any())).thenReturn(clienteActualizado));
         Cliente  clienteResultado = clienteService.update(1,clienteActualizado);
         assertNotNull(clienteResultado);
         assertEquals("juan22", clienteResultado.getNombre());
-       // verify(clienteRepository.times(1)).save(cliente);
+       verify(clienteRepository.times(1)).save(cliente);
 
 
 }
